@@ -29,10 +29,9 @@ public class ThreadNumGenerator implements Runnable{
                     mas.notifyAll();
                 }
 
-
             }
             synchronized (mas){
-                notifyAll();
+                mas.notifyAll();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -22,13 +22,11 @@ public class ThreadStatistics implements Runnable{
                     if (Main.count % 5 ==0){
                         for (int i = 0; i < 100; i++) {
                             if (mas[i] > 0)
-                                System.out.printf("%d: (%d); ", i, mas[i]);
+                                System.out.printf("%d:(%d); ", i, mas[i]);
                         }
                         System.out.println();
                     }
-
                 }
-
             }
 
         } catch (InterruptedException e) {
