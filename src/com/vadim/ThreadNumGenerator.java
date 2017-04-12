@@ -7,13 +7,11 @@ import java.util.Random;
  */
 public class ThreadNumGenerator implements Runnable{
     private Thread t = new Thread(this);
-    Random rnd = new Random();
-    int[] mas;
-    NumCollection collection;
+    private Random rnd = new Random();
+    private int[] mas;
 
-    public ThreadNumGenerator(int[] mas, NumCollection collection) {
+    public ThreadNumGenerator(int[] mas) {
         this.mas = mas;
-        this.collection = collection;
         t.start();
     }
 
@@ -27,15 +25,15 @@ public class ThreadNumGenerator implements Runnable{
                     mas[i] +=1;
                     if (mas[i] >= 5)
                         Main.allow = false;
+                    Main.count ++;
                     mas.notifyAll();
                 }
+
 
             }
             synchronized (mas){
                 notifyAll();
             }
-
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

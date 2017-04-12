@@ -3,11 +3,11 @@ package com.vadim;
 public class Main {
 
     public static volatile boolean allow = true;
-    public static void main(String[] args) {
+    public static volatile int count = 0;
+    private static int[] mas = new int[100];
 
-        NumCollection numCollection = new NumCollection();
-        int[] mas = new int[100];
-        new ThreadNumGenerator(mas, numCollection);
-        new ThreadStatistics(mas, numCollection);
+    public static void main(String[] args) {
+        new ThreadNumGenerator(mas);
+        new ThreadStatistics(mas);
     }
 }

@@ -4,12 +4,10 @@ package com.vadim;
  * Created by vadim on 12.04.2017.
  */
 public class ThreadStatistics implements Runnable{
-    int[] mas;
-    NumCollection collection;
-    Thread t = new Thread(this);
+    private int[] mas;
+    private Thread t = new Thread(this);
 
-    public ThreadStatistics(int[] mas, NumCollection collection) {
-        this.collection = collection;
+    public ThreadStatistics(int[] mas) {
         this.mas = mas;
         t.start();
     }
@@ -18,14 +16,17 @@ public class ThreadStatistics implements Runnable{
     public void run() {
         try {
             while (Main.allow){
-                Thread.sleep(5000);
+                //Thread.sleep(5000);
                 synchronized (mas) {
                     mas.wait();
-                    for (int i = 0; i < 100; i++) {
-                        if (mas[i] > 0)
-                            System.out.printf("%d: (%d);   ", i, mas[i]);
+                    if (Main.count % 5 ==0){
+                        for (int i = 0; i < 100; i++) {
+                            if (mas[i] > 0)
+                                System.out.printf("%d: (%d); ", i, mas[i]);
+                        }
+                        System.out.println();
                     }
-                    System.out.println();
+
                 }
 
             }
